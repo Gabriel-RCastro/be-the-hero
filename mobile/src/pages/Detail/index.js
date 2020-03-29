@@ -17,7 +17,7 @@ export default function Detail(){
     const incident = route.params.incident //PEGANDO OS INCIDENTS
     //MENSAGEM PRA SER USADA NO EMAIL E NO WHATS
     const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${Intl.NumberFormat('pt-BR', { style:'currency', currency: 'BRL' 
-    }).format(incident.value)}`
+    }).format(incident.value).replace(/^(\D+)/, '$1 ')}`
 
     function navigateBack(){ 
         navigation.goBack(); //goBack() É UMA FUNÇÃO QUE EXISTE DENTRO DO useNavigation(), PARA VOLTAR 
@@ -37,7 +37,6 @@ export default function Detail(){
         Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`); 
         //PARA A URL DO WHATS. COM O METODO DE ENVIO DE MENSAGEM (send)
     }
-
 
     return(
         <View style={styles.container}>
@@ -62,7 +61,7 @@ export default function Detail(){
                     {Intl.NumberFormat('pt-BR', { 
                         style:'currency', 
                         currency: 'BRL' 
-                    }).format(incident.value)}
+                    }).format(incident.value).replace(/^(\D+)/, '$1 ')}
                     {/*FORMATAR EM MOEDA BR*/}
                 </Text>
             </View>

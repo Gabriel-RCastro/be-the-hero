@@ -92,7 +92,7 @@ export default function Incidents(){
                             {Intl.NumberFormat('pt-BR', { 
                                 style:'currency', 
                                 currency: 'BRL' 
-                            }).format(incident.value)}
+                            }).format(incident.value).replace(/^(\D+)/, '$1 ')}
                             {/*FORMATAR EM MOEDA BR*/}
                         </Text>
 
